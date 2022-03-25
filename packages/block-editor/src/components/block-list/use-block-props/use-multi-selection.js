@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useDispatch, useSelectors } from '@wordpress/data';
 import { useRefEffect } from '@wordpress/compose';
 
 /**
@@ -39,7 +39,7 @@ export function useMultiSelection( clientId ) {
 		getBlockParents,
 		getBlockSelectionStart,
 		hasMultiSelection,
-	} = useSelect( blockEditorStore );
+	} = useSelectors( blockEditorStore );
 	return useRefEffect(
 		( node ) => {
 			const { ownerDocument } = node;

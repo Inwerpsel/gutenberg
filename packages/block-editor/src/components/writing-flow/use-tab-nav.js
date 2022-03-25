@@ -3,7 +3,7 @@
  */
 import { focus } from '@wordpress/dom';
 import { TAB, ESCAPE } from '@wordpress/keycodes';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useSelect, useDispatch, useSelectors } from '@wordpress/data';
 import { useRefEffect, useMergeRefs } from '@wordpress/compose';
 import { useRef } from '@wordpress/element';
 
@@ -31,7 +31,7 @@ export default function useTabNav() {
 		hasMultiSelection,
 		getSelectedBlockClientId,
 		getBlockCount,
-	} = useSelect( blockEditorStore );
+	} = useSelectors( blockEditorStore );
 	const { setNavigationMode } = useDispatch( blockEditorStore );
 	const isNavigationMode = useSelect(
 		( select ) => select( blockEditorStore ).isNavigationMode(),

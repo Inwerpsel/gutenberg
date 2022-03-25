@@ -16,7 +16,7 @@ import {
 	isRTL,
 } from '@wordpress/dom';
 import { UP, DOWN, LEFT, RIGHT } from '@wordpress/keycodes';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useDispatch, useSelectors } from '@wordpress/data';
 import { useRefEffect } from '@wordpress/compose';
 
 /**
@@ -128,7 +128,7 @@ export default function useArrowNav() {
 		getLastMultiSelectedBlockClientId,
 		getSettings,
 		hasMultiSelection,
-	} = useSelect( blockEditorStore );
+	} = useSelectors( blockEditorStore );
 	const { multiSelect, selectBlock } = useDispatch( blockEditorStore );
 	return useRefEffect( ( node ) => {
 		// Here a DOMRect is stored while moving the caret vertically so
