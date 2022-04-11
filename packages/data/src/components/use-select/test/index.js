@@ -14,7 +14,7 @@ import { useState, useReducer } from '@wordpress/element';
 import { createRegistry } from '../../../registry';
 import { createRegistrySelector } from '../../../factory';
 import { RegistryProvider } from '../../registry-provider';
-import useSelect from '../index';
+import useSelect from '../deprecated';
 
 describe( 'useSelect', () => {
 	let registry;

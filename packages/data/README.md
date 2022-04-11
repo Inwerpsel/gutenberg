@@ -765,6 +765,14 @@ _Returns_
 
 ### useSelect
 
+This is a deprecated version of `useSelect` that also can act as a way to get a store's selectors.
+It's preserved for backwards compatibility, so that code using this can have time to migrate to
+the `useSelectors` hook which does only that.
+
+I made this as a copy so that the simpler version could already be added and potentially used internally instead.
+This is a function that has very little reasons to change, especially if it needs to stay compatible.
+So there's little overhead in keeping a copy.
+
 Custom react hook for retrieving props from registered selectors.
 
 In general, this custom React hook follows the
@@ -800,7 +808,7 @@ doesn't change and other props are passed in that do change, the price will
 not change because the dependency is just the currency.
 
 When data is only used in an event callback, the data should not be retrieved
-on render, so you need to use useSelectors instead.
+on render, so it may be useful to get the selectors function instead.
 
 **Don't use `useSelect` this way when calling the selectors in the render
 function because your component won't re-render on a data change.**
@@ -820,12 +828,12 @@ function Paste( { children } ) {
 
 _Parameters_
 
--   _mapSelect_ `Function|StoreDescriptor|string`: Function called on every state change. The returned value is exposed to the component implementing this hook. The function receives the `registry.select` method on the first argument and the `registry` on the second argument.
+-   _mapSelect_ `Function|StoreDescriptor|string`: Function called on every state change. The returned value is exposed to the component implementing this hook. The function receives the `registry.select` method on the first argument and the `registry` on the second argument. When a store key is passed, all selectors for the store will be returned. This is only meant for usage of these selectors in event callbacks, not for data needed to create the element tree.
 -   _deps_ `Array`: If provided, this memoizes the mapSelect so the same `mapSelect` is invoked on every state change unless the dependencies change.
 
 _Returns_
 
--   `any`: The current map output.
+-   `Function`: A custom react hook.
 
 ### useSelectors
 
